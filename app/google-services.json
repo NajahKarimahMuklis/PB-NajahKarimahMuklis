@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "257884283133",
+    "project_id": "pb-nkm",
+    "storage_bucket": "pb-nkm.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257884283133:android:4622823175eb891c0f1e94",
+        "android_client_info": {
+          "package_name": "com.example.pb_nkm3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz_-aQ61_Q-9gzB0LyU917gKL8r8uZFME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
