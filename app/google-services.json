@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "257884283133",
+    "firebase_url": "https://pb-nkm-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "pb-nkm",
     "storage_bucket": "pb-nkm.firebasestorage.app"
   },

@@ -3,6 +3,7 @@ package com.example.pb_nkm3;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.Toast;
@@ -88,28 +89,24 @@ public class CreateAccount extends AppCompatActivity {
                     // ✅ Kirim email verifikasi
                     fUser.sendEmailVerification().addOnCompleteListener(verifyTask -> {
                         if (verifyTask.isSuccessful()) {
-                            // ✅ Simpan data ke database tanpa menyimpan password
-                            String uid = fUser.getUid();
-                            UserDetails userDetails = new UserDetails(uid, username, email, password,nim);
-
-                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-                            reference.child(uid).setValue(userDetails).addOnCompleteListener(task1 -> {
-                                if (task1.isSuccessful()) {
-                                    Toast.makeText(CreateAccount.this, "Akun berhasil dibuat. Silakan verifikasi email Anda!", Toast.LENGTH_LONG).show();
-                                    mAuth.signOut(); // ✅ Logout setelah registrasi agar user harus verifikasi dulu
-
-                                    // Pindah ke halaman login
-                                    Intent intent = new Intent(CreateAccount.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(CreateAccount.this, "Gagal menyimpan data pengguna. Coba lagi.", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                            Toast.makeText(CreateAccount.this, "Email verifikasi telah dikirim. Silakan cek kotak masuk Anda!", Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(CreateAccount.this, "Gagal mengirim email verifikasi. Coba lagi.", Toast.LENGTH_SHORT).show();
                         }
                     });
+
+                    // ✅ Simpan data ke database tanpa menyimpan password
+                    String uid = fUser.getUid();
+                    UserDetails userDetails = new UserDetails(uid, username, email, password, nim);
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+                    reference.child(uid).setValue(userDetails).addOnCompleteListener(task1 -> {
+                        if (task.isSuccessful()) {
+                            Log.d("FirebaseDB", "Data pengguna berhasil disimpan.");
+                        } else {
+                            Log.e("FirebaseDB", "Gagal menyimpan data pengguna.", task.getException());
+                        }
+                    });
+
                 }
             } else {
                 Toast.makeText(CreateAccount.this, "Pendaftaran gagal: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
