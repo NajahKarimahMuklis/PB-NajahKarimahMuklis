@@ -29,7 +29,7 @@ import java.util.Locale;
 
 public class ExpenseActivity extends AppCompatActivity {
 
-    private EditText editSource, editAmount;
+    private EditText editCategory, editAmount;
     private Button btnAddExpense;
     private RecyclerView recyclerExpense;
 
@@ -43,7 +43,7 @@ public class ExpenseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense);
 
-        editSource = findViewById(R.id.editSource);
+        editCategory = findViewById(R.id.editSource);
         editAmount = findViewById(R.id.editAmount);
         btnAddExpense = findViewById(R.id.btnAddExpense);
         recyclerExpense = findViewById(R.id.recyclerExpense);
@@ -82,7 +82,7 @@ public class ExpenseActivity extends AppCompatActivity {
         setupexpenseListener();
 
         btnAddExpense.setOnClickListener(v -> {
-            String source = editSource.getText().toString().trim();
+            String source = editCategory.getText().toString().trim();
             String amount = editAmount.getText().toString().trim();
 
             if (!source.isEmpty() && !amount.isEmpty()) {
@@ -92,7 +92,7 @@ public class ExpenseActivity extends AppCompatActivity {
                 expenseRef.push().setValue(newItem)
                         .addOnSuccessListener(aVoid -> {
                             Toast.makeText(ExpenseActivity.this, "Data berhasil disimpan!", Toast.LENGTH_SHORT).show();
-                            editSource.setText("");
+                            editCategory.setText("");
                             editAmount.setText("");
                         })
                         .addOnFailureListener(e -> Toast.makeText(ExpenseActivity.this, "Gagal menyimpan data: " + e.getMessage(), Toast.LENGTH_SHORT).show());
@@ -133,7 +133,7 @@ public class ExpenseActivity extends AppCompatActivity {
 
         final EditText inputSource = new EditText(this);
         inputSource.setHint("Sumber");
-        inputSource.setText(item != null ? item.getSource() : "");
+        inputSource.setText(item != null ? item.getCategory() : "");
         layout.addView(inputSource);
 
 

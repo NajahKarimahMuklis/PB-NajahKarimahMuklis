@@ -16,7 +16,7 @@ public class ExpenseItem {
     }
 
     // Getter
-    public String getSource() {
+    public String getCategory() {
         return category;
     }
 
