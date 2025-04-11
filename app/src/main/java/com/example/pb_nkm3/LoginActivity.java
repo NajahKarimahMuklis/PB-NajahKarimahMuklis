@@ -18,7 +18,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     TextInputEditText username, password;
     CheckBox checkBoxes;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -50,12 +50,12 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(view -> loginUser());
 
         forgetPass.setOnClickListener(view -> {
-            Intent forget = new Intent(getApplicationContext(), ForgetPass.class);
+            Intent forget = new Intent(getApplicationContext(), ForgetPassActivity.class);
             startActivity(forget);
         });
 
         createAccount.setOnClickListener(view -> {
-            Intent create = new Intent(getApplicationContext(), CreateAccount.class);
+            Intent create = new Intent(getApplicationContext(), CreateAccountActivity.class);
             startActivity(create);
         });
     }
@@ -81,13 +81,13 @@ public class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // Login berhasil, pindah ke halaman utama
                         FirebaseUser user = mAuth.getCurrentUser();
-                        Toast.makeText(MainActivity.this, "Login Berhasil!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Login Berhasil!", Toast.LENGTH_SHORT).show();
                         Intent home = new Intent(getApplicationContext(), HomeActivity.class);
                         startActivity(home);
                         finish();
                     } else {
                         // Login gagal
-                        Toast.makeText(MainActivity.this, "Login Gagal! Periksa kembali email dan password.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Login Gagal! Periksa kembali email dan password.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

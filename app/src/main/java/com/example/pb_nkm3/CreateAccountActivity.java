@@ -1,6 +1,5 @@
 package com.example.pb_nkm3;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -21,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CreateAccount extends AppCompatActivity {
+public class CreateAccountActivity extends AppCompatActivity {
     TextInputEditText namapengguna, email, katasandi, nimpengguna;
     Button btnSignUp;
     FirebaseAuth mAuth;
@@ -31,7 +30,7 @@ public class CreateAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_createaccount);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -89,9 +88,9 @@ public class CreateAccount extends AppCompatActivity {
                     // ✅ Kirim email verifikasi
                     fUser.sendEmailVerification().addOnCompleteListener(verifyTask -> {
                         if (verifyTask.isSuccessful()) {
-                            Toast.makeText(CreateAccount.this, "Email verifikasi telah dikirim. Silakan cek kotak masuk Anda!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(CreateAccountActivity.this, "Email verifikasi telah dikirim. Silakan cek kotak masuk Anda!", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(CreateAccount.this, "Gagal mengirim email verifikasi. Coba lagi.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CreateAccountActivity.this, "Gagal mengirim email verifikasi. Coba lagi.", Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -109,7 +108,7 @@ public class CreateAccount extends AppCompatActivity {
 
                 }
             } else {
-                Toast.makeText(CreateAccount.this, "Pendaftaran gagal: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateAccountActivity.this, "Pendaftaran gagal: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

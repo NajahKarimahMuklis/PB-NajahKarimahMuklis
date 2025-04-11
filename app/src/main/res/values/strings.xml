@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">PB-NKM3</string>
+    <string-array name="type_array">
+        <item>Buku</item>
+        <item>Film</item>
+    </string-array>
+
+    <string-array name="status_array">
+        <item>Wishlist</item>
+        <item>Ongoing</item>
+        <item>Completed</item>
+        <item>Dropped</item>
+    </string-array>
+
 </resources>

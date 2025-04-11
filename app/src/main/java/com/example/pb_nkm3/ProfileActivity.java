@@ -1,5 +1,6 @@
 package com.example.pb_nkm3;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -8,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +22,8 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView txtNama, txtEmail, txtNIM;
     private FirebaseAuth mAuth;
     private DatabaseReference reference;
+
+    BottomNavigationView bottomNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,5 +68,26 @@ public class ProfileActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "User tidak login!", Toast.LENGTH_SHORT).show();
         }
+
+        bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setSelectedItemId(R.id.nav_profile);
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            if (id == R.id.nav_profile) {
+                return true;
+            } else if (id == R.id.nav_settings) {
+                startActivity(new Intent(ProfileActivity.this, SettingActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                return true;
+            } else if (id == R.id.nav_home) {
+                startActivity(new Intent(ProfileActivity.this, HomeActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                return true;
+            }
+            return false;
+        });
+
     }
 }
