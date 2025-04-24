@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class HomeActivity extends AppCompatActivity {
 
-    CardView cardViewInc, cardViewExp, cardViewWishlist;
+    CardView cardViewInc, cardViewExp;
     BottomNavigationView bottomNav;
 
 
@@ -31,7 +31,6 @@ public class HomeActivity extends AppCompatActivity {
 
         cardViewInc = findViewById(R.id.cardView_income);
         cardViewExp = findViewById(R.id.cardView_expense);
-        cardViewWishlist = findViewById(R.id.cardView_wishlist);
 
         cardViewInc.setOnClickListener(v -> {
             startActivity(new Intent(HomeActivity.this, IncomeActivity.class));
@@ -41,9 +40,7 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(new Intent(HomeActivity.this, ExpenseActivity.class));
         });
 
-        cardViewWishlist.setOnClickListener(v -> {
-            startActivity(new Intent(HomeActivity.this, WishlistActivity.class));
-        });
+
 
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setSelectedItemId(R.id.nav_home);
